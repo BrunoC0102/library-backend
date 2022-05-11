@@ -31,6 +31,7 @@ namespace Library
             services.Configure<LibraryDatabaseSettings>(Configuration.GetSection(nameof(LibraryDatabaseSettings)));
             services.AddSingleton<ILibraryDatabaseSettings>(sp => sp.GetRequiredService<IOptions<LibraryDatabaseSettings>>().Value);
             services.AddSingleton<BookService>();
+            services.AddSingleton<UserService>();
             services.AddControllers();
         }
 
