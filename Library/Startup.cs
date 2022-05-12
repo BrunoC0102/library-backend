@@ -1,5 +1,6 @@
 using Library.Entities;
 using Library.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,9 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Library
@@ -31,7 +34,6 @@ namespace Library
             services.Configure<LibraryDatabaseSettings>(Configuration.GetSection(nameof(LibraryDatabaseSettings)));
             services.AddSingleton<ILibraryDatabaseSettings>(sp => sp.GetRequiredService<IOptions<LibraryDatabaseSettings>>().Value);
             services.AddSingleton<BookService>();
-            services.AddSingleton<UserService>();
             services.AddControllers();
         }
 
